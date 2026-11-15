@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SPDX-License-Identifier: GPL-3.0-or-later
+  Copyright (C) 2026 ferlagod
+  Mis Tareas — https://github.com/ferlagod/mis_tareas
+-->
+<resources>
+    <!-- Listes de départ -->
+    <string name="starter_list_shopping">Courses</string>
+    <string name="starter_list_tasks">À faire</string>
+
+    <!-- Accueil -->
+    <string name="greeting_morning">Bonjour</string>
+    <string name="greeting_afternoon">Bon après-midi</string>
+    <string name="greeting_night">Bonsoir</string>
+    <string name="home_nothing_today">Rien pour aujourd’hui</string>
+    <plurals name="home_today_count">
+        <item quantity="one">%d pour aujourd’hui</item>
+        <item quantity="many">%d pour aujourd’hui</item>
+        <item quantity="other">%d pour aujourd’hui</item>
+    </plurals>
+    <plurals name="home_lists_count">
+        <item quantity="one">%d liste</item>
+        <item quantity="many">%d listes</item>
+        <item quantity="other">%d listes</item>
+    </plurals>
+    <string name="search_hint">Rechercher des tâches</string>
+    <string name="search_no_results">Aucune tâche trouvée</string>
+    <string name="smart_views">En un coup d’œil</string>
+    <string name="smart_today">Aujourd’hui</string>
+    <string name="smart_important">Importantes</string>
+    <string name="my_lists">Mes listes</string>
+    <string name="new_list">Nouvelle liste</string>
+    <string name="no_lists">Créez votre première liste</string>
+    <string name="new_task">Nouvelle tâche</string>
+    <string name="move_up">Monter</string>
+    <string name="move_down">Descendre</string>
+
+    <!-- Listes -->
+    <string name="list_name">Nom</string>
+    <string name="edit_list">Modifier la liste</string>
+    <string name="delete_list">Supprimer la liste</string>
+    <string name="delete_list_title">Supprimer la liste ?</string>
+    <plurals name="delete_list_message">
+        <item quantity="one">« %1$s » et sa %2$d tâche seront supprimées, aussi sur votre serveur si vous synchronisez.</item>
+        <item quantity="many">« %1$s » et ses %2$d tâches seront supprimées, aussi sur votre serveur si vous synchronisez.</item>
+        <item quantity="other">« %1$s » et ses %2$d tâches seront supprimées, aussi sur votre serveur si vous synchronisez.</item>
+    </plurals>
+    <string name="share_list">Partager la liste</string>
+    <string name="sort_by">Trier par</string>
+    <string name="sort_manual">Mon ordre (appui long et glisser)</string>
+    <string name="sort_due">Échéance</string>
+    <string name="sort_alpha">Nom</string>
+    <string name="clear_completed">Effacer les terminées</string>
+    <string name="clear">Effacer</string>
+    <plurals name="completed_count">
+        <item quantity="one">%d terminée</item>
+        <item quantity="many">%d terminées</item>
+        <item quantity="other">%d terminées</item>
+    </plurals>
+    <string name="list_empty_title">Rien pour l’instant</string>
+    <string name="list_empty_message">Écrivez en bas pour ajouter votre première tâche. Essayez « Lait demain ! »</string>
+    <string name="all_done_title">Tout est fait !</string>
+
+    <!-- Saisie rapide -->
+    <string name="quick_add_hint">Ajouter une tâche</string>
+    <string name="quick_add_today_hint">Ajouter une tâche pour aujourd’hui</string>
+    <string name="quick_add_important_hint">Ajouter une tâche importante</string>
+    <string name="add">Ajouter</string>
+    <plurals name="tasks_added_to">
+        <item quantity="one">%1$d tâche ajoutée à %2$s</item>
+        <item quantity="many">%1$d tâches ajoutées à %2$s</item>
+        <item quantity="other">%1$d tâches ajoutées à %2$s</item>
+    </plurals>
+
+    <!-- Vues -->
+    <string name="group_overdue">En retard</string>
+    <string name="group_today">Aujourd’hui</string>
+    <string name="today_empty_title">Rien pour aujourd’hui</string>
+    <string name="today_empty_message">Les tâches à faire aujourd’hui ou en retard apparaissent ici.</string>
+    <string name="important_empty_title">Aucune tâche importante</string>
+    <string name="important_empty_message">Touchez l’étoile d’une tâche ou terminez-la par « ! ».</string>
+
+    <!-- Détail -->
+    <string name="add_notes">Ajouter des notes</string>
+    <string name="due_date">Échéance</string>
+    <string name="due_today">Aujourd’hui</string>
+    <string name="due_tomorrow">Demain</string>
+    <string name="due_yesterday">Hier</string>
+    <string name="due_next_week">Semaine prochaine</string>
+    <string name="pick_date">Choisir une date</string>
+    <string name="remove_due">Retirer</string>
+    <string name="important">Importante</string>
+    <string name="in_list">Liste</string>
+    <string name="delete_task">Supprimer la tâche</string>
+    <plurals name="tasks_deleted">
+        <item quantity="one">%d tâche supprimée</item>
+        <item quantity="many">%d tâches supprimées</item>
+        <item quantity="other">%d tâches supprimées</item>
+    </plurals>
+
+    <!-- Partage depuis d’autres apps -->
+    <plurals name="share_add_title">
+        <item quantity="one">Ajouter %d tâche</item>
+        <item quantity="many">Ajouter %d tâches</item>
+        <item quantity="other">Ajouter %d tâches</item>
+    </plurals>
+    <string name="share_choose_list">Dans la liste</string>
+
+    <!-- Réglages -->
+    <string name="settings_title">Réglages</string>
+    <string name="section_sync">Synchronisation</string>
+    <string name="section_tasks">Tâches</string>
+    <string name="section_appearance">Apparence</string>
+    <string name="section_language">Langue</string>
+    <string name="section_about">À propos</string>
+    <string name="local_only">Uniquement sur cet appareil</string>
+    <string name="local_only_desc">Connectez un serveur pour retrouver vos tâches partout.</string>
+    <string name="mode_caldav">Nextcloud Tasks (CalDAV)</string>
+    <string name="mode_caldav_short">Nextcloud Tasks</string>
+    <string name="mode_caldav_desc">Chaque liste est un calendrier de tâches. Fonctionne avec Nextcloud Tasks, Thunderbird, Rappels d’Apple et tout serveur CalDAV (Radicale, Baïkal, Fastmail…).</string>
+    <string name="mode_webdav">Fichiers Markdown (WebDAV)</string>
+    <string name="mode_webdav_short">Fichiers Markdown</string>
+    <string name="mode_webdav_desc">Chaque liste est un fichier .md dans un dossier WebDAV (Fichiers Nextcloud, ownCloud…). Lisible partout et compatible avec Obsidian Tasks.</string>
+    <string name="server_hint">Serveur (https://cloud.exemple.fr)</string>
+    <string name="username">Nom d’utilisateur</string>
+    <string name="app_password">Mot de passe d’application</string>
+    <string name="app_password_help">Dans Nextcloud, créez un mot de passe d’application dans Paramètres → Sécurité → Appareils et sessions. Il est stocké chiffré sur cet appareil.</string>
+    <string name="webdav_folder">Dossier</string>
+    <string name="webdav_folder_value">Dossier : %s</string>
+    <string name="connect">Se connecter</string>
+    <string name="connecting">Connexion…</string>
+    <string name="disconnect">Se déconnecter</string>
+    <string name="disconnect_title">Déconnecter le compte ?</string>
+    <string name="disconnect_message">Vos tâches restent sur cet appareil, mais ne seront plus synchronisées.</string>
+    <string name="last_sync">Dernière synchronisation : %s</string>
+    <string name="never_synced">Pas encore synchronisé</string>
+    <string name="sync_now">Synchroniser</string>
+    <string name="sync_in_progress">Synchronisation…</string>
+    <string name="sync_error">Erreur de synchronisation</string>
+    <string name="sync_configure">Configurer la synchronisation</string>
+    <string name="error_auth">Nom d’utilisateur ou mot de passe d’application incorrect.</string>
+    <string name="error_network">Impossible de joindre le serveur. Vérifiez l’adresse et votre connexion.</string>
+    <string name="error_not_found">Aucun dossier ni calendrier de tâches trouvé à cette adresse.</string>
+    <string name="error_invalid_url">L’adresse du serveur ne semble pas correcte.</string>
+    <string name="error_server">Le serveur a renvoyé une erreur (%d).</string>
+    <string name="error_unknown">Une erreur s’est produite. Réessayez.</string>
+    <string name="smart_input">Saisie intelligente</string>
+    <string name="smart_input_desc">Comprend « demain », « vendredi », « 15/11 », « à 18h » (ajoute un rappel) ou un « ! » final pour importante, « chaque lundi » pour répéter et des #étiquettes.</string>
+    <string name="default_list">Liste par défaut</string>
+    <string name="theme">Thème</string>
+    <string name="theme_system">Système</string>
+    <string name="theme_light">Clair</string>
+    <string name="theme_dark">Sombre</string>
+    <string name="amoled_mode">Noir pur</string>
+    <string name="amoled_mode_desc">Économise la batterie sur les écrans OLED</string>
+    <string name="language_system">Langue du système</string>
+    <string name="about_version">Mis Tareas %s</string>
+    <string name="about_license">Logiciel libre · GPL-3.0</string>
+    <string name="source_code">Code source</string>
+    <string name="license">Licence</string>
+
+    <!-- Couleurs -->
+    <string name="color_orange">Orange</string>
+    <string name="color_mustard">Moutarde</string>
+    <string name="color_red">Rouge</string>
+    <string name="color_pink">Rose</string>
+    <string name="color_purple">Violet</string>
+    <string name="color_blue">Bleu</string>
+    <string name="color_teal">Bleu canard</string>
+    <string name="color_green">Vert</string>
+    <string name="color_graphite">Graphite</string>
+
+    <!-- Communs -->
+    <string name="save">Enregistrer</string>
+    <string name="cancel">Annuler</string>
+    <string name="delete">Supprimer</string>
+    <string name="undo">Annuler</string>
+    <string name="ok">OK</string>
+
+    <!-- Accessibilité -->
+    <string name="cd_back">Retour</string>
+    <string name="cd_settings">Réglages</string>
+    <string name="cd_more">Plus d’options</string>
+    <string name="cd_clear_search">Effacer la recherche</string>
+    <string name="cd_done">Terminée</string>
+    <string name="cd_pending">À faire</string>
+    <string name="cd_mark_important">Marquer comme importante</string>
+    <string name="cd_unmark_important">Retirer des importantes</string>
+    <string name="cd_ignore_suggestion">Ignorer la suggestion</string>
+    <string name="cd_list_options">Options de %s</string>
+    <string name="cd_toggle_password">Afficher ou masquer le mot de passe</string>
+
+    <!-- Rappels -->
+    <string name="reminder">Rappel</string>
+    <string name="reminder_in_one_hour">Dans 1 h</string>
+    <string name="pick_date_time">Choisir date et heure</string>
+    <string name="notif_channel_name">Rappels</string>
+    <string name="notif_channel_desc">Alertes des tâches avec rappel</string>
+    <string name="notif_action_done">Terminée</string>
+    <string name="notif_action_snooze">Reporter d’1 h</string>
+    <string name="section_reminders">Rappels</string>
+    <string name="notifications">Notifications</string>
+    <string name="notifications_on">Autorisées</string>
+    <string name="notifications_off">Désactivées : vous ne verrez pas les rappels. Touchez pour les autoriser.</string>
+    <string name="exact_alarms">Rappels à l’heure exacte</string>
+    <string name="exact_alarms_on">Les rappels arrivent à la minute près</string>
+    <string name="exact_alarms_off">Peuvent arriver avec quelques minutes de retard. Touchez pour autoriser.</string>
+    <string name="notifications_denied">Autorisez les notifications pour recevoir vos rappels</string>
+    <string name="open_settings">Réglages</string>
+
+    <!-- Rayons du magasin -->
+    <string name="sort_category">Rayons du magasin</string>
+    <string name="shop_section">Rayon</string>
+    <string name="cat_fruit_veg">Fruits et légumes</string>
+    <string name="cat_bakery">Boulangerie</string>
+    <string name="cat_meat">Viande</string>
+    <string name="cat_fish">Poisson et fruits de mer</string>
+    <string name="cat_deli">Charcuterie et fromages</string>
+    <string name="cat_dairy">Produits laitiers et œufs</string>
+    <string name="cat_pantry">Épicerie</string>
+    <string name="cat_breakfast">Petit-déjeuner et sucreries</string>
+    <string name="cat_drinks">Boissons</string>
+    <string name="cat_frozen">Surgelés</string>
+    <string name="cat_cleaning">Entretien et maison</string>
+    <string name="cat_hygiene">Hygiène et soins</string>
+    <string name="cat_pets">Animaux</string>
+    <string name="cat_other">Autres</string>
+    <string name="exact_alarms_prompt">Pour recevoir les rappels à l’heure, autorisez les alarmes exactes</string>
+    <string name="allow">Autoriser</string>
+
+    <!-- Compartir -->
+    <string name="share_title">Partager « %s »</string>
+    <string name="share_send_text">Envoyer en texte</string>
+    <string name="share_search_hint">Cherchez des personnes ou des groupes de votre Nextcloud</string>
+    <string name="share_can_edit">Peuvent modifier</string>
+    <string name="share_people_with_access">Personnes ayant accès</string>
+    <string name="share_nobody">Pas encore partagée</string>
+    <string name="share_role_edit">Peut modifier</string>
+    <string name="share_role_view">Lecture seule</string>
+    <string name="share_remove_cd">Retirer l’accès à %s</string>
+    <string name="share_unavailable_not_connected">Pour partager des listes, connectez votre Nextcloud dans Réglages → Synchronisation (mode Nextcloud Tasks).</string>
+    <string name="share_unavailable_not_nextcloud">Le partage avec d’autres personnes fonctionne avec Nextcloud en mode Nextcloud Tasks. Avec votre connexion actuelle, vous pouvez envoyer la liste en texte.</string>
+    <string name="share_unavailable_not_owner">%s a partagé cette liste avec vous ; seul son propriétaire peut la partager avec d’autres.</string>
+    <string name="share_error">Échec. Vérifiez votre connexion et réessayez.</string>
+    <string name="shared_by">Partagée par %s</string>
+    <string name="shared_with">Partagée avec %s</string>
+    <string name="read_only_banner">Lecture seule : %s ne vous a pas donné le droit de modifier.</string>
+    <string name="leave_list">Ne plus voir la liste</string>
+    <string name="leave_list_title">Ne plus voir la liste ?</string>
+    <string name="leave_list_message">« %1$s » appartient à %2$s. Elle disparaîtra pour vous, mais ne sera supprimée pour personne.</string>
+
+    <!-- Repeticiones, hora límite y resumen diario -->
+    <string name="notif_action_snooze_short">10 min</string>
+    <string name="digest_channel_name">Résumé quotidien</string>
+    <string name="digest_channel_desc">Chaque jour, les tâches du jour et celles en retard</string>
+    <plurals name="digest_title">
+        <item quantity="one">%d tâche pour aujourd’hui</item>
+        <item quantity="many">%d tâches pour aujourd’hui</item>
+        <item quantity="other">%d tâches pour aujourd’hui</item>
+    </plurals>
+    <plurals name="digest_overdue">
+        <item quantity="one">%d en retard</item>
+        <item quantity="many">%d en retard</item>
+        <item quantity="other">%d en retard</item>
+    </plurals>
+    <string name="repeat">Répéter</string>
+    <string name="repeat_daily">Chaque jour</string>
+    <string name="repeat_weekly">Chaque semaine</string>
+    <string name="repeat_monthly">Chaque mois</string>
+    <string name="repeat_yearly">Chaque année</string>
+    <string name="repeats">Se répète</string>
+    <string name="repeat_next">Tâche récurrente : de retour le %1$s</string>
+    <string name="add_time">Ajouter l’heure</string>
+    <string name="change_time">Changer l’heure</string>
+    <string name="remove_time">Retirer l’heure</string>
+    <string name="due_time">Heure d’échéance</string>
+    <string name="notify_at_due">Alerter à l’heure d’échéance</string>
+    <string name="notify_at_due_desc">Les tâches avec une heure vous alertent même sans rappel</string>
+    <string name="daily_digest">Résumé quotidien</string>
+    <string name="daily_digest_desc">À %1$s, une notification avec les tâches du jour et en retard. Touchez pour changer l’heure.</string>
+
+    <!-- Subtareas y etiquetas -->
+    <string name="subtasks">Sous-tâches</string>
+    <string name="subtask_of">Sous-tâche de</string>
+    <string name="add_subtask">Ajouter une sous-tâche</string>
+    <string name="tags">Étiquettes</string>
+    <string name="add_tag">Ajouter une étiquette (ex. maison)</string>
+    <string name="repeat_every_weekday">Chaque %1$s</string>
+</resources>

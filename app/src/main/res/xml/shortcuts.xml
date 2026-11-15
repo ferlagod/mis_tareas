@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SPDX-License-Identifier: GPL-3.0-or-later
+  Copyright (C) 2026 ferlagod
+  Mis Tareas — https://github.com/ferlagod/mis_tareas
+-->
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="new_task"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_new_task"
+        android:shortcutShortLabel="@string/new_task"
+        android:shortcutLongLabel="@string/new_task">
+        <intent
+            android:action="com.ferlagod.mistareas.action.NEW_TASK"
+            android:targetPackage="com.ferlagod.mistareas"
+            android:targetClass="com.ferlagod.mistareas.MainActivity" />
+    </shortcut>
+</shortcuts>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SPDX-License-Identifier: GPL-3.0-or-later
+  Copyright (C) 2026 ferlagod
+  Mis Tareas — https://github.com/ferlagod/mis_tareas
+-->
+<resources>
+    <string name="app_name" translatable="false">Mis Tareas</string>
+
+    <!-- Starter lists -->
+    <string name="starter_list_shopping">Shopping</string>
+    <string name="starter_list_tasks">To-do</string>
+
+    <!-- Home -->
+    <string name="greeting_morning">Good morning</string>
+    <string name="greeting_afternoon">Good afternoon</string>
+    <string name="greeting_night">Good evening</string>
+    <string name="home_nothing_today">Nothing due today</string>
+    <plurals name="home_today_count">
+        <item quantity="one">%d due today</item>
+        <item quantity="other">%d due today</item>
+    </plurals>
+    <plurals name="home_lists_count">
+        <item quantity="one">%d list</item>
+        <item quantity="other">%d lists</item>
+    </plurals>
+    <string name="search_hint">Search tasks</string>
+    <string name="search_no_results">No tasks found</string>
+    <string name="smart_views">At a glance</string>
+    <string name="smart_today">Today</string>
+    <string name="smart_important">Important</string>
+    <string name="my_lists">My lists</string>
+    <string name="new_list">New list</string>
+    <string name="no_lists">Create your first list</string>
+    <string name="new_task">New task</string>
+    <string name="move_up">Move up</string>
+    <string name="move_down">Move down</string>
+
+    <!-- Lists -->
+    <string name="list_name">Name</string>
+    <string name="edit_list">Edit list</string>
+    <string name="delete_list">Delete list</string>
+    <string name="delete_list_title">Delete list?</string>
+    <plurals name="delete_list_message">
+        <item quantity="one">“%1$s” and its %2$d task will be deleted, also from your server if you sync.</item>
+        <item quantity="other">“%1$s” and its %2$d tasks will be deleted, also from your server if you sync.</item>
+    </plurals>
+    <string name="share_list">Share list</string>
+    <string name="sort_by">Sort by</string>
+    <string name="sort_manual">My order (hold and drag)</string>
+    <string name="sort_due">Due date</string>
+    <string name="sort_alpha">Name</string>
+    <string name="clear_completed">Clear completed</string>
+    <string name="clear">Clear</string>
+    <plurals name="completed_count">
+        <item quantity="one">%d completed</item>
+        <item quantity="other">%d completed</item>
+    </plurals>
+    <string name="list_empty_title">Nothing here yet</string>
+    <string name="list_empty_message">Type below to add your first task. Try “Milk tomorrow !”</string>
+    <string name="all_done_title">All done!</string>
+
+    <!-- Quick add -->
+    <string name="quick_add_hint">Add a task</string>
+    <string name="quick_add_today_hint">Add a task for today</string>
+    <string name="quick_add_important_hint">Add an important task</string>
+    <string name="add">Add</string>
+    <plurals name="tasks_added_to">
+        <item quantity="one">%1$d task added to %2$s</item>
+        <item quantity="other">%1$d tasks added to %2$s</item>
+    </plurals>
+
+    <!-- Smart views -->
+    <string name="group_overdue">Overdue</string>
+    <string name="group_today">Today</string>
+    <string name="today_empty_title">Nothing for today</string>
+    <string name="today_empty_message">Tasks due today or overdue will show up here.</string>
+    <string name="important_empty_title">No important tasks</string>
+    <string name="important_empty_message">Tap the star on a task, or end it with “!”.</string>
+
+    <!-- Task details -->
+    <string name="add_notes">Add notes</string>
+    <string name="due_date">Due date</string>
+    <string name="due_today">Today</string>
+    <string name="due_tomorrow">Tomorrow</string>
+    <string name="due_yesterday">Yesterday</string>
+    <string name="due_next_week">Next week</string>
+    <string name="pick_date">Pick a date</string>
+    <string name="remove_due">Remove</string>
+    <string name="important">Important</string>
+    <string name="in_list">List</string>
+    <string name="delete_task">Delete task</string>
+    <plurals name="tasks_deleted">
+        <item quantity="one">Task deleted</item>
+        <item quantity="other">%d tasks deleted</item>
+    </plurals>
+
+    <!-- Share from other apps -->
+    <plurals name="share_add_title">
+        <item quantity="one">Add %d task</item>
+        <item quantity="other">Add %d tasks</item>
+    </plurals>
+    <string name="share_choose_list">To list</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="section_sync">Sync</string>
+    <string name="section_tasks">Tasks</string>
+    <string name="section_appearance">Appearance</string>
+    <string name="section_language">Language</string>
+    <string name="section_about">About</string>
+    <string name="local_only">Only on this device</string>
+    <string name="local_only_desc">Connect a server to see your tasks everywhere.</string>
+    <string name="mode_caldav">Nextcloud Tasks (CalDAV)</string>
+    <string name="mode_caldav_short">Nextcloud Tasks</string>
+    <string name="mode_caldav_desc">Each list is a task calendar. Works with Nextcloud Tasks, Thunderbird, Apple Reminders and any CalDAV server (Radicale, Baïkal, Fastmail…).</string>
+    <string name="mode_webdav">Markdown files (WebDAV)</string>
+    <string name="mode_webdav_short">Markdown files</string>
+    <string name="mode_webdav_desc">Each list is a plain .md file in a WebDAV folder (Nextcloud Files, ownCloud…). Readable anywhere and compatible with Obsidian Tasks.</string>
+    <string name="server_hint">Server (https://cloud.example.com)</string>
+    <string name="username">Username</string>
+    <string name="app_password">App password</string>
+    <string name="app_password_help">In Nextcloud, create an app password in Settings → Security → Devices &amp; sessions. Your password is stored encrypted on this device.</string>
+    <string name="webdav_folder">Folder</string>
+    <string name="webdav_folder_value">Folder: %s</string>
+    <string name="connect">Connect</string>
+    <string name="connecting">Connecting…</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="disconnect_title">Disconnect account?</string>
+    <string name="disconnect_message">Your tasks stay on this device, but will no longer sync.</string>
+    <string name="last_sync">Last sync: %s</string>
+    <string name="never_synced">Not synced yet</string>
+    <string name="sync_now">Sync now</string>
+    <string name="sync_in_progress">Syncing…</string>
+    <string name="sync_error">Sync error</string>
+    <string name="sync_configure">Set up sync</string>
+    <string name="error_auth">Wrong username or app password.</string>
+    <string name="error_network">Can’t reach the server. Check the address and your connection.</string>
+    <string name="error_not_found">No folder or task calendars found at that address.</string>
+    <string name="error_invalid_url">That server address doesn’t look right.</string>
+    <string name="error_server">The server returned an error (%d).</string>
+    <string name="error_unknown">Something went wrong. Please try again.</string>
+    <string name="smart_input">Smart input</string>
+    <string name="smart_input_desc">Understands “tomorrow”, “friday”, “15/11”, “at 6pm” (sets a reminder) or a final “!” for important, “every monday” to repeat and #tags.</string>
+    <string name="default_list">Default list</string>
+    <string name="theme">Theme</string>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="amoled_mode">Pure black</string>
+    <string name="amoled_mode_desc">Saves battery on OLED screens</string>
+    <string name="language_system">System language</string>
+    <string name="about_version">Mis Tareas %s</string>
+    <string name="about_license">Free software · GPL-3.0</string>
+    <string name="source_code">Source code</string>
+    <string name="license">License</string>
+
+    <!-- Colors -->
+    <string name="color_orange">Orange</string>
+    <string name="color_mustard">Mustard</string>
+    <string name="color_red">Red</string>
+    <string name="color_pink">Pink</string>
+    <string name="color_purple">Purple</string>
+    <string name="color_blue">Blue</string>
+    <string name="color_teal">Teal</string>
+    <string name="color_green">Green</string>
+    <string name="color_graphite">Graphite</string>
+
+    <!-- Common -->
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="undo">Undo</string>
+    <string name="ok">OK</string>
+
+    <!-- Accessibility -->
+    <string name="cd_back">Back</string>
+    <string name="cd_settings">Settings</string>
+    <string name="cd_more">More options</string>
+    <string name="cd_clear_search">Clear search</string>
+    <string name="cd_done">Done</string>
+    <string name="cd_pending">Pending</string>
+    <string name="cd_mark_important">Mark as important</string>
+    <string name="cd_unmark_important">Unmark as important</string>
+    <string name="cd_ignore_suggestion">Ignore suggestion</string>
+    <string name="cd_list_options">Options for %s</string>
+    <string name="cd_toggle_password">Show or hide password</string>
+
+    <!-- Reminders -->
+    <string name="reminder">Reminder</string>
+    <string name="reminder_in_one_hour">In 1 hour</string>
+    <string name="pick_date_time">Pick date &amp; time</string>
+    <string name="notif_channel_name">Reminders</string>
+    <string name="notif_channel_desc">Alerts for tasks with a reminder</string>
+    <string name="notif_action_done">Done</string>
+    <string name="notif_action_snooze">Snooze 1 h</string>
+    <string name="section_reminders">Reminders</string>
+    <string name="notifications">Notifications</string>
+    <string name="notifications_on">Allowed</string>
+    <string name="notifications_off">Off: you won’t see reminders. Tap to allow.</string>
+    <string name="exact_alarms">On-time reminders</string>
+    <string name="exact_alarms_on">Reminders arrive at the exact minute</string>
+    <string name="exact_alarms_off">May arrive a few minutes late. Tap to allow.</string>
+    <string name="notifications_denied">Allow notifications to get your reminders</string>
+    <string name="open_settings">Settings</string>
+
+    <!-- Store sections -->
+    <string name="sort_category">Store sections</string>
+    <string name="shop_section">Section</string>
+    <string name="cat_fruit_veg">Fruit &amp; vegetables</string>
+    <string name="cat_bakery">Bakery</string>
+    <string name="cat_meat">Meat</string>
+    <string name="cat_fish">Fish &amp; seafood</string>
+    <string name="cat_deli">Deli &amp; cheese</string>
+    <string name="cat_dairy">Dairy &amp; eggs</string>
+    <string name="cat_pantry">Pantry</string>
+    <string name="cat_breakfast">Breakfast &amp; snacks</string>
+    <string name="cat_drinks">Drinks</string>
+    <string name="cat_frozen">Frozen</string>
+    <string name="cat_cleaning">Household &amp; cleaning</string>
+    <string name="cat_hygiene">Personal care</string>
+    <string name="cat_pets">Pets</string>
+    <string name="cat_other">Other</string>
+    <string name="exact_alarms_prompt">To get reminders right on time, allow exact alarms</string>
+    <string name="allow">Allow</string>
+
+    <!-- Compartir -->
+    <string name="share_title">Share “%s”</string>
+    <string name="share_send_text">Send as text</string>
+    <string name="share_search_hint">Search people or groups in your Nextcloud</string>
+    <string name="share_can_edit">They can edit</string>
+    <string name="share_people_with_access">People with access</string>
+    <string name="share_nobody">Not shared with anyone yet</string>
+    <string name="share_role_edit">Can edit</string>
+    <string name="share_role_view">View only</string>
+    <string name="share_remove_cd">Remove access for %s</string>
+    <string name="share_unavailable_not_connected">To share lists with other people, connect your Nextcloud in Settings → Sync (Nextcloud Tasks mode).</string>
+    <string name="share_unavailable_not_nextcloud">Sharing with other people works with Nextcloud in Nextcloud Tasks mode. With your current connection you can send the list as text.</string>
+    <string name="share_unavailable_not_owner">%s shared this list with you; only its owner can share it with more people.</string>
+    <string name="share_error">That didn’t work. Check your connection and try again.</string>
+    <string name="shared_by">Shared by %s</string>
+    <string name="shared_with">Shared with %s</string>
+    <string name="read_only_banner">View only: %s hasn’t given you permission to edit.</string>
+    <string name="leave_list">Stop seeing this list</string>
+    <string name="leave_list_title">Stop seeing the list?</string>
+    <string name="leave_list_message">“%1$s” belongs to %2$s. It will disappear for you, but won’t be deleted for anyone.</string>
+
+    <!-- Repeticiones, hora límite y resumen diario -->
+    <string name="notif_action_snooze_short">10 min</string>
+    <string name="digest_channel_name">Daily summary</string>
+    <string name="digest_channel_desc">Each day, the tasks due today and the overdue ones</string>
+    <plurals name="digest_title">
+        <item quantity="one">%d task for today</item>
+        <item quantity="other">%d tasks for today</item>
+    </plurals>
+    <plurals name="digest_overdue">
+        <item quantity="one">%d overdue</item>
+        <item quantity="other">%d overdue</item>
+    </plurals>
+    <string name="repeat">Repeat</string>
+    <string name="repeat_daily">Every day</string>
+    <string name="repeat_weekly">Every week</string>
+    <string name="repeat_monthly">Every month</string>
+    <string name="repeat_yearly">Every year</string>
+    <string name="repeats">Repeats</string>
+    <string name="repeat_next">Repeating task: back on %1$s</string>
+    <string name="add_time">Add time</string>
+    <string name="change_time">Change time</string>
+    <string name="remove_time">Remove time</string>
+    <string name="due_time">Due time</string>
+    <string name="notify_at_due">Alert at the due time</string>
+    <string name="notify_at_due_desc">Tasks with a due time notify you even without a reminder</string>
+    <string name="daily_digest">Daily summary</string>
+    <string name="daily_digest_desc">At %1$s, a notification with today’s and overdue tasks. Tap to change the time.</string>
+
+    <!-- Subtareas y etiquetas -->
+    <string name="subtasks">Subtasks</string>
+    <string name="subtask_of">Subtask of</string>
+    <string name="add_subtask">Add subtask</string>
+    <string name="tags">Tags</string>
+    <string name="add_tag">Add tag (e.g. home)</string>
+    <string name="repeat_every_weekday">Every %1$s</string>
+</resources>
