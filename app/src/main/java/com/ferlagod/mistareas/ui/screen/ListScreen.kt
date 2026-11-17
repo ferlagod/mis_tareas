@@ -132,9 +132,10 @@ fun ListScreen(
 
     var showCompleted by rememberSaveable(listId) { mutableStateOf(false) }
     var openTaskId by rememberSaveable { mutableStateOf<String?>(null) }
-    // Abierta desde la notificación de un aviso.
-    LaunchedEffect(listId) {
-        viewModel.pendingOpenTask.value?.takeIf { it.listId == listId }?.let {
+    // Abierta desde la notificación de un aviso (también si esta lista ya estaba en pantalla).
+    val pendingOpen by viewModel.pendingOpenTask.collectAsStateWithLifecycle()
+    LaunchedEffect(listId, pendingOpen) {
+        pendingOpen?.takeIf { it.listId == listId }?.let {
             openTaskId = it.taskId
             viewModel.pendingOpenTask.value = null
         }
