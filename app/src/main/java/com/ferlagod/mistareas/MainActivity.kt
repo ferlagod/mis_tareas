@@ -82,10 +82,12 @@ class MainActivity : ComponentActivity() {
 
         // Con la app abierta se sincroniza cada minuto: si alguien con quien compartes una lista
         // tacha algo en el súper, lo ves enseguida (con el CTag, si no hay cambios cuesta una petición).
+        // De paso se comprueba si ha cambiado el día (app abierta pasada la medianoche).
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 while (true) {
                     delay(FOREGROUND_SYNC_MS)
+                    viewModel.refreshToday()
                     viewModel.triggerSync()
                 }
             }

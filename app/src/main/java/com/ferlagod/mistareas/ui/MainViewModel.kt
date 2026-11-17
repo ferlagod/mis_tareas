@@ -123,8 +123,13 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     /** Al volver a la app: el día puede haber cambiado y conviene traer cambios de otros dispositivos. */
     fun onAppForeground() {
-        _today.value = LocalDate.now()
+        refreshToday()
         sync.requestSync(delayMs = 0)
+    }
+
+    /** Actualiza "hoy" si ha cambiado el día (StateFlow no emite si es el mismo). */
+    fun refreshToday() {
+        _today.value = LocalDate.now()
     }
 
     fun triggerSync() = sync.requestSync(delayMs = 0)
