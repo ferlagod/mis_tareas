@@ -118,7 +118,9 @@ data class TaskEntity(
 data class TaskWithList(
     @androidx.room.Embedded val task: TaskEntity,
     @ColumnInfo(name = "list_name") val listName: String,
-    @ColumnInfo(name = "list_color") val listColor: String
+    @ColumnInfo(name = "list_color") val listColor: String,
+    /** La lista está compartida conmigo sin permiso de edición. */
+    @ColumnInfo(name = "list_read_only") val listReadOnly: Boolean = false
 )
 
 /** Resumen de una lista para la pantalla de inicio. */

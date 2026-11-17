@@ -369,7 +369,8 @@ private fun androidx.compose.foundation.lazy.LazyListScope.searchResultItems(
                     onToggleImportant = { viewModel.setImportant(item.task.id, !item.task.important) },
                     onClick = { onOpen(item.task.id) },
                     listName = item.listName,
-                    listColor = color
+                    listColor = color,
+                    enabled = !item.listReadOnly
                 )
                 if (index < results.lastIndex) RowDivider(start = 48.dp)
             }

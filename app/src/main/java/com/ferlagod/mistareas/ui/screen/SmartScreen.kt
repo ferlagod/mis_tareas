@@ -207,6 +207,7 @@ private fun LazyListScope.taskGroup(
             shape = groupShape(index, tasks.size),
             showDivider = index < tasks.lastIndex,
             onDelete = { viewModel.deleteTasks(listOf(item.task.id)) },
+            enabled = !item.listReadOnly,
             modifier = Modifier.animateItem()
         ) {
             TaskRow(
@@ -217,7 +218,8 @@ private fun LazyListScope.taskGroup(
                 onToggleImportant = { viewModel.setImportant(item.task.id, !item.task.important) },
                 onClick = { onOpen(item.task.id) },
                 listName = item.listName,
-                listColor = color
+                listColor = color,
+                enabled = !item.listReadOnly
             )
         }
     }

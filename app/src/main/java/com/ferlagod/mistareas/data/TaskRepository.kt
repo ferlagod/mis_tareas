@@ -39,6 +39,12 @@ class TaskRepository private constructor(context: Context) {
 
     private fun now() = System.currentTimeMillis()
 
+    /**
+     * Las listas compartidas conmigo sin permiso de edición no se modifican: el servidor
+     * rechazaría los cambios y se quedarían pendientes para siempre, distintos de lo que hay allí.
+     */
+    private suspend fun isReadOnly(listId: String): Boolean = listDao.get(listId)?.readOnly == true
+
     // ------------------------------------------------------------------
     // Consultas
     // ------------------------------------------------------------------
@@ -162,7 +168,7 @@ class TaskRepository private constructor(context: Context) {
 
     /** Añade varias tareas de golpe (texto pegado o compartido, una por línea). */
     suspend fun addTasks(listId: String, titles: List<String>) {
-        if (titles.isEmpty()) return
+        if (titles.isEmpty() || isReadOnly(listId)) return
         db.withTransaction {
             var position = taskDao.maxPosition(listId)
             taskDao.upsertAll(titles.map { TaskEntity(id = Ids.newId(), listId = listId, title = it.trim(), position = ++position) })
@@ -173,6 +179,7 @@ class TaskRepository private constructor(context: Context) {
     /** Guarda cambios hechos en el detalle de la tarea. */
     suspend fun updateTask(task: TaskEntity) {
         val current = taskDao.get(task.id) ?: return
+        if (isReadOnly(current.listId)) return
         val updated = task.copy(
             listId = current.listId, // Cambiar de lista es otra operación (ver moveTask).
             completedAt = when {
@@ -192,7 +199,7 @@ class TaskRepository private constructor(context: Context) {
      */
     suspend fun setDone(id: String, done: Boolean): Advanced? {
         val task = taskDao.get(id) ?: return null
-        if (task.done == done) return null
+        if (task.done == done || isReadOnly(task.listId)) return null
         if (done && task.repeats) {
             advanceRecurrence(task)?.let { next ->
                 taskDao.upsert(next.copy(updatedAt = now(), dirty = true))
@@ -235,14 +242,14 @@ class TaskRepository private constructor(context: Context) {
 
     suspend fun addSubtask(parentId: String, title: String): String? {
         val parent = taskDao.get(parentId) ?: return null
-        if (title.isBlank()) return null
+        if (title.isBlank() || isReadOnly(parent.listId)) return null
         return addTask(parent.listId, title, parentId = parent.uid)
     }
 
     suspend fun setTags(id: String, tags: List<String>) {
         val task = taskDao.get(id) ?: return
         val joined = TaskEntity.joinTags(tags)
-        if (task.tags == joined) return
+        if (task.tags == joined || isReadOnly(task.listId)) return
         taskDao.upsert(task.copy(tags = joined, updatedAt = now(), dirty = true))
         sync.requestSync()
     }
@@ -274,7 +281,7 @@ class TaskRepository private constructor(context: Context) {
     /** Repetición de la tarea (null = no se repite). Sin fecha límite, se pone hoy como primera. */
     suspend fun setRepeat(id: String, rrule: String?) {
         val task = taskDao.get(id) ?: return
-        if (task.rrule == rrule) return
+        if (task.rrule == rrule || isReadOnly(task.listId)) return
         val due = if (rrule != null && task.dueDay == null && task.reminderAt == null) LocalDate.now().toEpochDay() else task.dueDay
         taskDao.upsert(task.copy(rrule = rrule, dueDay = due, updatedAt = now(), dirty = true))
         sync.requestSync()
@@ -283,14 +290,14 @@ class TaskRepository private constructor(context: Context) {
     /** Hora de la fecha límite en minutos desde medianoche (null = todo el día). */
     suspend fun setDueTime(id: String, minutes: Int?) {
         val task = taskDao.get(id) ?: return
-        if (task.dueDay == null || task.dueMinutes == minutes) return
+        if (task.dueDay == null || task.dueMinutes == minutes || isReadOnly(task.listId)) return
         taskDao.upsert(task.copy(dueMinutes = minutes, updatedAt = now(), dirty = true))
         sync.requestSync()
     }
 
     suspend fun setImportant(id: String, important: Boolean) {
         val task = taskDao.get(id) ?: return
-        if (task.important == important) return
+        if (task.important == important || isReadOnly(task.listId)) return
         taskDao.upsert(task.copy(priority = if (important) 1 else 0, updatedAt = now(), dirty = true))
         sync.requestSync()
     }
@@ -298,7 +305,7 @@ class TaskRepository private constructor(context: Context) {
     suspend fun setDue(id: String, due: LocalDate?) {
         val task = taskDao.get(id) ?: return
         val day = due?.toEpochDay()
-        if (task.dueDay == day) return
+        if (task.dueDay == day || isReadOnly(task.listId)) return
         // Al cambiar de día se conserva la hora; sin fecha no hay hora ni repetición.
         taskDao.upsert(
             task.copy(
@@ -314,7 +321,7 @@ class TaskRepository private constructor(context: Context) {
 
     suspend fun setReminder(id: String, at: Long?) {
         val task = taskDao.get(id) ?: return
-        if (task.reminderAt == at) return
+        if (task.reminderAt == at || isReadOnly(task.listId)) return
         taskDao.upsert(task.copy(reminderAt = at, updatedAt = now(), dirty = true))
         sync.requestSync()
     }
@@ -336,7 +343,7 @@ class TaskRepository private constructor(context: Context) {
     suspend fun moveTask(id: String, targetListId: String) {
         db.withTransaction {
             val task = taskDao.get(id) ?: return@withTransaction
-            if (task.listId == targetListId) return@withTransaction
+            if (task.listId == targetListId || isReadOnly(task.listId) || isReadOnly(targetListId)) return@withTransaction
             // Las subtareas viajan con su madre; una subtarea movida sola deja de serlo.
             val family = listOf(task.copy(parentId = null)) + descendants(task)
             family.forEach { moveOne(it, targetListId) }
@@ -364,7 +371,7 @@ class TaskRepository private constructor(context: Context) {
     /** Borra tareas; devuelve sus versiones anteriores para poder deshacer. */
     suspend fun deleteTasks(ids: List<String>): List<TaskEntity> {
         val removed = db.withTransaction {
-            val roots = taskDao.getAll(ids).filter { !it.deleted }
+            val roots = taskDao.getAll(ids).filter { !it.deleted && !isReadOnly(it.listId) }
             // Al borrar una tarea se borran también sus subtareas.
             val tasks = (roots + roots.flatMap { descendants(it) }).distinctBy { it.id }.filter { !it.deleted }
             tasks.forEach { task ->
@@ -391,7 +398,7 @@ class TaskRepository private constructor(context: Context) {
     /** Guarda el nuevo orden manual de las tareas pendientes de una lista. */
     suspend fun reorderTasks(orderedIds: List<String>) {
         db.withTransaction {
-            val tasks = taskDao.getAll(orderedIds).associateBy { it.id }
+            val tasks = taskDao.getAll(orderedIds).filter { !isReadOnly(it.listId) }.associateBy { it.id }
             val positions = orderedIds.mapNotNull { tasks[it]?.position }.sorted()
             orderedIds.forEachIndexed { index, id ->
                 val task = tasks[id] ?: return@forEachIndexed

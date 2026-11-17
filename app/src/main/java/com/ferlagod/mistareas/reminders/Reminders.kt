@@ -204,10 +204,12 @@ object Reminders {
             .setShowWhen(true)
             .setAutoCancel(true)
             .setContentIntent(contentIntent)
-        // En una lista compartida de solo lectura no se puede completar.
-        if (!readOnly) builder.addAction(0, ctx.getString(R.string.notif_action_done), action(ReminderReceiver.ACTION_DONE))
-        builder.addAction(0, ctx.getString(R.string.notif_action_snooze_short), action(ReminderReceiver.ACTION_SNOOZE_SHORT))
-        builder.addAction(0, ctx.getString(R.string.notif_action_snooze), action(ReminderReceiver.ACTION_SNOOZE))
+        // En una lista compartida de solo lectura no se puede completar ni posponer (cambiaría el aviso).
+        if (!readOnly) {
+            builder.addAction(0, ctx.getString(R.string.notif_action_done), action(ReminderReceiver.ACTION_DONE))
+            builder.addAction(0, ctx.getString(R.string.notif_action_snooze_short), action(ReminderReceiver.ACTION_SNOOZE_SHORT))
+            builder.addAction(0, ctx.getString(R.string.notif_action_snooze), action(ReminderReceiver.ACTION_SNOOZE))
+        }
         try {
             NotificationManagerCompat.from(context).notify(notificationId(task.id), builder.build())
         } catch (_: SecurityException) {

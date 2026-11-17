@@ -321,7 +321,7 @@ fun ListScreen(
                             shape = groupShape(index, items.size),
                             showDivider = index < items.lastIndex,
                             onDelete = { viewModel.deleteTasks(listOf(task.id)) },
-                            enabled = !readOnly,
+                        enabled = !readOnly,
                             modifier = Modifier.animateItem()
                         ) {
                             TaskRow(
@@ -343,7 +343,7 @@ fun ListScreen(
                         shape = groupShape(index, rows.size),
                         showDivider = index < rows.lastIndex,
                         onDelete = { viewModel.deleteTasks(listOf(task.id)) },
-                            enabled = !readOnly,
+                        enabled = !readOnly,
                         modifier = (if (dragging) Modifier else Modifier.animateItem())
                             .reorderable(
                                 state = reorderState,
@@ -373,7 +373,7 @@ fun ListScreen(
                             count = completed.size,
                             expanded = showCompleted,
                             onToggle = { showCompleted = !showCompleted },
-                            onClear = { viewModel.clearCompleted(list.id) },
+                            onClear = if (readOnly) null else ({ viewModel.clearCompleted(list.id) }),
                             modifier = Modifier.animateItem()
                         )
                     }
@@ -383,7 +383,7 @@ fun ListScreen(
                                 shape = groupShape(index, completed.size),
                                 showDivider = index < completed.lastIndex,
                                 onDelete = { viewModel.deleteTasks(listOf(task.id)) },
-                            enabled = !readOnly,
+                                enabled = !readOnly,
                                 modifier = Modifier.animateItem()
                             ) {
                                 TaskRow(
@@ -523,7 +523,7 @@ private fun ListMenu(
 }
 
 @Composable
-private fun CompletedHeader(count: Int, expanded: Boolean, onToggle: () -> Unit, onClear: () -> Unit, modifier: Modifier = Modifier) {
+private fun CompletedHeader(count: Int, expanded: Boolean, onToggle: () -> Unit, onClear: (() -> Unit)?, modifier: Modifier = Modifier) {
     val rotation by animateFloatAsState(if (expanded) 0f else -90f, label = "chevron")
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -547,8 +547,11 @@ private fun CompletedHeader(count: Int, expanded: Boolean, onToggle: () -> Unit,
                 .weight(1f)
                 .padding(top = 4.dp)
         )
-        TextButton(onClick = onClear, shape = RoundedCornerShape(10.dp)) {
-            Text(stringResource(R.string.clear), fontWeight = FontWeight.SemiBold)
+        // En una lista compartida de solo lectura no se pueden borrar.
+        if (onClear != null) {
+            TextButton(onClick = onClear, shape = RoundedCornerShape(10.dp)) {
+                Text(stringResource(R.string.clear), fontWeight = FontWeight.SemiBold)
+            }
         }
     }
     Spacer(modifier = Modifier.height(2.dp))

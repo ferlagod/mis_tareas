@@ -61,7 +61,7 @@ interface TaskDao {
 
     @Query(
         """
-        SELECT t.*, l.name AS list_name, l.color AS list_color
+        SELECT t.*, l.name AS list_name, l.color AS list_color, l.read_only AS list_read_only
         FROM tasks t JOIN lists l ON l.id = t.list_id
         WHERE t.deleted = 0 AND l.deleted = 0 AND t.done = 0
           AND t.due_day IS NOT NULL AND t.due_day <= :today
@@ -72,7 +72,7 @@ interface TaskDao {
 
     @Query(
         """
-        SELECT t.*, l.name AS list_name, l.color AS list_color
+        SELECT t.*, l.name AS list_name, l.color AS list_color, l.read_only AS list_read_only
         FROM tasks t JOIN lists l ON l.id = t.list_id
         WHERE t.deleted = 0 AND l.deleted = 0 AND t.done = 0 AND t.priority BETWEEN 1 AND 4
         ORDER BY t.priority, t.due_day IS NULL, t.due_day, l.position, t.position
@@ -82,7 +82,7 @@ interface TaskDao {
 
     @Query(
         """
-        SELECT t.*, l.name AS list_name, l.color AS list_color
+        SELECT t.*, l.name AS list_name, l.color AS list_color, l.read_only AS list_read_only
         FROM tasks t JOIN lists l ON l.id = t.list_id
         WHERE t.deleted = 0 AND l.deleted = 0
           AND (t.title LIKE '%' || :query || '%' OR t.notes LIKE '%' || :query || '%'
@@ -118,7 +118,7 @@ interface TaskDao {
     /** Pendientes que vencen hoy o antes (resumen diario). */
     @Query(
         """
-        SELECT t.*, l.name AS list_name, l.color AS list_color
+        SELECT t.*, l.name AS list_name, l.color AS list_color, l.read_only AS list_read_only
         FROM tasks t JOIN lists l ON l.id = t.list_id
         WHERE t.deleted = 0 AND l.deleted = 0 AND t.done = 0
           AND t.due_day IS NOT NULL AND t.due_day <= :today
