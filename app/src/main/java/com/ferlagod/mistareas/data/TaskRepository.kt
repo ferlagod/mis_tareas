@@ -56,7 +56,9 @@ class TaskRepository private constructor(context: Context) {
     fun observeTask(id: String): Flow<TaskEntity?> = taskDao.observe(id)
     fun observeToday(today: LocalDate): Flow<List<TaskWithList>> = taskDao.observeDueUntil(today.toEpochDay())
     fun observeImportant(): Flow<List<TaskWithList>> = taskDao.observeImportant()
-    fun search(query: String): Flow<List<TaskWithList>> = taskDao.search(query)
+    /** Búsqueda literal: `%` y `_` no actúan como comodines de LIKE. */
+    fun search(query: String): Flow<List<TaskWithList>> =
+        taskDao.search(query.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_"))
 
     suspend fun getTask(id: String): TaskEntity? = taskDao.get(id)
     suspend fun getActiveLists(): List<TaskListEntity> = listDao.getActive()

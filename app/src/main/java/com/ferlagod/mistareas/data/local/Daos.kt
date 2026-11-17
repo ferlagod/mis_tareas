@@ -85,12 +85,13 @@ interface TaskDao {
         SELECT t.*, l.name AS list_name, l.color AS list_color, l.read_only AS list_read_only
         FROM tasks t JOIN lists l ON l.id = t.list_id
         WHERE t.deleted = 0 AND l.deleted = 0
-          AND (t.title LIKE '%' || :query || '%' OR t.notes LIKE '%' || :query || '%'
-               OR t.tags LIKE '%' || LTRIM(:query, '#') || '%')
+          AND (t.title LIKE '%' || :query || '%' ESCAPE '\' OR t.notes LIKE '%' || :query || '%' ESCAPE '\'
+               OR t.tags LIKE '%' || LTRIM(:query, '#') || '%' ESCAPE '\')
         ORDER BY t.done, l.position, t.position
         LIMIT 200
         """
     )
+    /** [query] debe llevar escapados `%`, `_` y `\` (ver TaskRepository.search). */
     fun search(query: String): Flow<List<TaskWithList>>
 
     /**
