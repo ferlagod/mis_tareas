@@ -92,10 +92,12 @@ class WebDavSyncEngine(
         var position = listDao.maxPosition()
         for ((key, remote) in remoteFiles) {
             if (key in handled) continue
+            // Solo llegan ficheros ".md" (en cualquier combinación de mayúsculas).
+            val name = remote.name.dropLast(3)
             val list = TaskListEntity(
                 id = Ids.newId(),
-                name = remote.name.removeSuffix(".md").removeSuffix(".MD"),
-                sortMode = TaskListEntity.defaultSortFor(remote.name),
+                name = name,
+                sortMode = TaskListEntity.defaultSortFor(name),
                 color = ListColor.forIndex(++position).name,
                 position = position,
                 remoteHref = remote.name,
