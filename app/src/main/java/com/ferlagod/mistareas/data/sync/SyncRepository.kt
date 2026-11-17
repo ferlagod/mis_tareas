@@ -18,6 +18,7 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,7 +27,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.withContext
 import java.io.IOException
+import java.util.concurrent.atomic.AtomicBoolean
 
 /** Una forma de sincronizar (CalDAV o WebDAV + Markdown). */
 interface SyncEngine {
@@ -80,7 +83,8 @@ class SyncRepository private constructor(private val context: Context) {
         }
     }
 
-    suspend fun synchronize(): Result<Unit> = mutex.withLock {
+    suspend fun synchronize(onLocked: () -> Unit = {}): Result<Unit> = mutex.withLock {
+        onLocked()
         val account = prefs.account.value ?: run {
             _state.value = SyncState.Disabled
             return Result.success(Unit)
@@ -104,16 +108,31 @@ class SyncRepository private constructor(private val context: Context) {
     /**
      * Pide una sincronización en breve. Las peticiones seguidas se agrupan; si no hay red,
      * WorkManager lo reintenta cuando vuelva.
+     *
+     * Una petición nueva solo anula la espera de la anterior: una sincronización ya empezada
+     * termina (cortarla a medias repetiría el trabajo y, con cambios cada pocos segundos, podría
+     * no completarse nunca). La nueva espera al mutex y recoge lo que haya cambiado mientras;
+     * si ya hay otra esperando, basta con esa.
      */
     fun requestSync(delayMs: Long = 1500) {
         if (prefs.account.value == null) return
         pending?.cancel()
         pending = scope.launch {
             delay(delayMs)
-            val result = synchronize()
-            if (result.exceptionOrNull()?.toSyncError() == SyncError.NETWORK) SyncWorker.enqueueWhenOnline(context)
+            if (!queued.compareAndSet(false, true)) return@launch
+            withContext(NonCancellable) {
+                val result = try {
+                    synchronize(onLocked = { queued.set(false) })
+                } finally {
+                    queued.set(false)
+                }
+                if (result.exceptionOrNull()?.toSyncError() == SyncError.NETWORK) SyncWorker.enqueueWhenOnline(context)
+            }
         }
     }
+
+    /** Hay una sincronización pedida esperando a que acabe la que está en curso. */
+    private val queued = AtomicBoolean(false)
 
     /** Comprueba la cuenta, la guarda y lanza la primera sincronización. */
     suspend fun connect(mode: SyncMode, server: String, username: String, password: String, folder: String): Result<Unit> {
